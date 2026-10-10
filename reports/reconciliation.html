@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reconciliation Report</title>
+<style>
+* { box-sizing: border-box; } body { margin: 0; background: #f4f7fb; color: #172033; font: 15px/1.5 Arial, sans-serif; }
+main { max-width: 1120px; margin: 36px auto; padding: 0 20px; } h1 { margin-bottom: 4px; font-size: 28px; }
+.sub { color: #667085; margin-top: 0; } .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 24px 0; }
+.card { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 16px; } .label { color: #667085; font-size: 13px; }
+.value { font-size: 22px; font-weight: 700; margin-top: 4px; } .toolbar { display: flex; gap: 12px; margin: 20px 0 12px; }
+input, select { padding: 10px 12px; border: 1px solid #ccd4df; border-radius: 8px; background: #fff; font-size: 14px; } input { flex: 1; }
+.table-wrap { overflow-x: auto; background: #fff; border: 1px solid #e3e8ef; border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; min-width: 760px; } th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #edf0f4; }
+th { background: #f8fafc; color: #475467; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; } tr:last-child td { border-bottom: 0; }
+.badge { display: inline-block; padding: 4px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.ok { background: #dcfce7; color: #166534; } .review { background: #fff1d6; color: #92400e; }
+.note { color: #667085; font-size: 13px; margin-top: 14px; } @media (max-width: 700px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+</style></head><body><main>
+<h1>Order and Payment Reconciliation</h1><p class="sub">Review each transaction across the order and payment files.</p>
+<section class="cards">
+<div class="card"><div class="label">Transactions</div><div class="value">11</div></div>
+<div class="card"><div class="label">Matched</div><div class="value">4</div></div>
+<div class="card"><div class="label">Needs review</div><div class="value">7</div></div>
+<div class="card"><div class="label">Total difference</div><div class="value">₹965.00</div></div>
+</section>
+<div class="toolbar"><input id="search" type="search" placeholder="Search transaction ID or issue"><select id="filter"><option value="all">All transactions</option><option value="matched">Matched</option><option value="needs-review">Needs review</option></select></div>
+<div class="table-wrap"><table><thead><tr><th>Transaction ID</th><th>Order amount</th><th>Payment amount</th><th>Status</th><th>Check result</th></tr></thead><tbody id="rows"><tr data-status='matched'><td>ORD1001</td><td>₹1,250.00</td><td>₹1,250.00</td><td><span class='badge ok'>Matched</span></td><td>Order and payment agree</td></tr><tr data-status='matched'><td>ORD1002</td><td>₹800.00</td><td>₹800.00</td><td><span class='badge ok'>Matched</span></td><td>Order and payment agree</td></tr><tr data-status='matched'><td>ORD1003</td><td>₹450.00</td><td>₹450.00</td><td><span class='badge ok'>Matched</span></td><td>Order and payment agree</td></tr><tr data-status='needs-review'><td>ORD1004</td><td>₹1,200.00</td><td>₹1,100.00</td><td><span class='badge review'>Needs review</span></td><td>Amount mismatch</td></tr><tr data-status='needs-review'><td>ORD1005</td><td>₹675.00</td><td>—</td><td><span class='badge review'>Needs review</span></td><td>Order has no matching payment</td></tr><tr data-status='needs-review'><td>ORD1006</td><td>₹1,980.00 (2 rows)</td><td>₹990.00</td><td><span class='badge review'>Needs review</span></td><td>Duplicate order ID (2 rows)</td></tr><tr data-status='needs-review'><td>ORD1007</td><td>—</td><td>₹525.00</td><td><span class='badge review'>Needs review</span></td><td>Payment has no matching order</td></tr><tr data-status='needs-review'><td>ORD1008</td><td>₹300.00</td><td>₹300.00</td><td><span class='badge review'>Needs review</span></td><td>Missing customer_id in order</td></tr><tr data-status='matched'><td>ORD1009</td><td>₹150.00</td><td>₹150.00</td><td><span class='badge ok'>Matched</span></td><td>Order and payment agree</td></tr><tr data-status='needs-review'><td>ORD1010</td><td>—</td><td>₹275.00</td><td><span class='badge review'>Needs review</span></td><td>Payment has no matching order</td></tr><tr data-status='needs-review'><td>ORD1011</td><td>—</td><td>₹0.00</td><td><span class='badge review'>Needs review</span></td><td>Payment has no matching order; Missing amount in payment</td></tr></tbody></table></div>
+<p class="note">Amounts are shown in INR. Records with duplicate IDs or missing values are flagged for review.</p>
+</main><script>
+const search=document.getElementById('search'),filter=document.getElementById('filter');
+function updateRows(){const q=search.value.toLowerCase();const f=filter.value;document.querySelectorAll('#rows tr').forEach(r=>{const matchText=r.innerText.toLowerCase().includes(q);const matchStatus=f==='all'||r.dataset.status===f;r.hidden=!(matchText&&matchStatus);});}
+search.addEventListener('input',updateRows);filter.addEventListener('change',updateRows);
+</script></body></html>

@@ -1,0 +1,15 @@
+{
+  "orders_rows": 9,
+  "payments_rows": 10,
+  "orders_total_inr": "6805.00",
+  "payments_total_inr": "5840.00",
+  "total_difference_inr": "965.00",
+  "exception_count": 8,
+  "exception_counts_by_type": {
+    "Amount mismatch": 1,
+    "Duplicate order ID": 1,
+    "Missing required field": 2,
+    "Order has no payment": 1,
+    "Payment has no order": 3
+  }
+}

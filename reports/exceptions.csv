@@ -1,0 +1,9 @@
+exception_type,transaction_id,order_amount,payment_amount,details
+Missing required field,ORD1008,,,orders.csv row 9: customer_id is blank
+Missing required field,ORD1011,,,payments.csv row 11: amount is blank
+Duplicate order ID,ORD1006,,,Found 2 rows in orders.csv
+Order has no payment,ORD1005,675.00,,
+Payment has no order,ORD1007,,525.00,
+Payment has no order,ORD1010,,275.00,
+Payment has no order,ORD1011,,,
+Amount mismatch,ORD1004,1200.00,1100.00,Difference: 100.00 INR
