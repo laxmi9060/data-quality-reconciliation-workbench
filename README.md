@@ -48,3 +48,8 @@ The `sql` folder contains PostgreSQL versions of the main checks. Run `01_create
 
 ![Reconciliation report preview](reports/reconciliation_preview.jpg)
 
+Understanding the total difference
+The ₹965 shown is the difference between the total valid order amounts and payment amounts in the source files. It includes unmatched and duplicate records; the specific amount mismatch is ORD1004, where the order is ₹1,200 and the payment is ₹1,100, a difference of ₹100.
+AI-assisted development
+I used OpenAI Codex and ChatGPT for project guidance, debugging, and documentation. I ran the Python workflow locally and validated the PostgreSQL checks in pgAdmin.
+
