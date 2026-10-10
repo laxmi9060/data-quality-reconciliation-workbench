@@ -1,6 +1,6 @@
 # Data Quality and Reconciliation Workbench
 
-A beginner-friendly local portfolio project that compares order records with payment records and reports data issues for review.
+An order-to-payment reconciliation workbench using Python and PostgreSQL to check transaction data, flag exceptions, and generate a searchable review report.
 
 ## What it checks
 
