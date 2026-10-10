@@ -43,3 +43,8 @@ The Python version uses built-in libraries and CSV files, so it runs locally wit
 ## PostgreSQL checks
 
 The `sql` folder contains PostgreSQL versions of the main checks. Run `01_create_tables.sql` in pgAdmin, import `data/orders.csv` into the `orders` table and `data/payments.csv` into the `payments` table, then run the queries in `02_quality_checks.sql`. The Python report can be used without PostgreSQL.
+
+## Report preview
+
+![Reconciliation report preview](reports/reconciliation_preview.jpg)
+
